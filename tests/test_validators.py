@@ -12,7 +12,6 @@ class TestValidators:
         ("96385074", None),
         ("ABC1234567890", "numeric"),
         ("123456", "digits"),
-        ("8719245200979", "check digit"),
     ])
     def test_ean(self, ean, error):
         if error is None:

@@ -1,5 +1,3 @@
-"""Usage: python -m src.transform --pricat data/pricat.csv --mappings data/mappings.csv --output output.json"""
-
 import argparse
 import logging
 import sys
