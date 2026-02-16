@@ -4,7 +4,7 @@ Reads a pricat CSV + mappings CSV and outputs a structured JSON catalog.
 
 ## Setup
 
-Python 3.10+. No dependencies besides pytest for tests:
+Python 3. No dependencies besides pytest for tests:
 ```
 pip install pytest
 ```
@@ -40,11 +40,12 @@ Pretty straightforward pipeline -- read CSVs, apply mappings, group into catalog
 Code is split into `extractors/`, `transformers/`, and `repositories/`. The mapper reads the mappings CSV and builds lookup tables at runtime so the mapping logic doesn't need to know column names upfront. Two types of mappings:
 
 - Simple: one source column -> one destination (`season: winter` becomes `season: Winter`)
-- Composite: multiple columns joined with `|` as lookup key (`size_group_code|size_code: EU|38` becomes `size: European size 38`)
+- Composite: multiple columns joined with `|`
 
-Mapped columns get "consumed" and excluded from output. Whatever's left passes through as-is to the variation.
+Mapped columns get "consumed" and excluded from output. Whatever's left passes through as is to the variation.
 
-Some fields like `ean`, `price_buy_net`, `price_sell`, `currency` are typed on the Variation model instead of being generic strings. This is a bit hardcoded -- adding a new special field means touching the model + builder..
+Some fields like `ean`, `price_buy_net`, `price_sell`, `currency` are typed on the Variation model instead of being generic strings. This is a bit hardcoded -- adding a new special field means touching the model + builder.. 
+but its good for data validation
 
 ## Validation
 
